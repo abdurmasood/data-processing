@@ -1,0 +1,31 @@
+---
+sheets:
+  - coc:
+      output_workbooks:
+        - workbook_name: Property
+          new_columns:
+            - name: Property Premium 100%
+              value_definition: X*W
+          remove_all_formatting: True
+          remove_totals_row: True
+
+        - workbook_name: Liability
+          remove_all_formatting: True
+          remove_totals_row: True
+  - cc:
+      output_workbooks:
+        - workbook_name: Property
+          new_columns:
+            - name: Property Premium 100%
+              value_definition: X*W
+          remove_all_formatting: True
+          remove_totals_row: True
+
+        - workbook_name: Liability
+          remove_all_formatting: True
+          remove_totals_row: True
+  - cgl:
+      remove_all_formatting: True
+      remove_totals_row: True
+remove_all_formatting: False
+remove_totals_row: False
