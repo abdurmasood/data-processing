@@ -1,28 +1,27 @@
 from os import listdir
 from os.path import isfile, join
-from src.globals import READ_DIR
+from src.globals import READ_DIR, CONFIG_FILE_PATH
 import pandas as pd
 import yaml
 
 
 class DataReader:
 
-    def __init__(self):
-        self.config_path = './../config.yaml'
-
-    def read_yaml_configuration(self):
+    @staticmethod
+    def read_yaml_configuration():
         """
         Reads a python dictionary based on YAML file.
         :param file_path: The path to the YAML file to read.
         :return: Python dictionary based on the yaml config file
         """
-        with open(self.config_path, "r") as stream:
+        with open(CONFIG_FILE_PATH, "r") as stream:
             try:
                 return yaml.safe_load(stream)
             except yaml.YAMLError as exc:
                 print(exc)
 
-    def read_excel_workbook(self, workbook_name):
+    @staticmethod
+    def read_excel_workbook(workbook_name):
         """
         Reads a workbook from input folder.
         :param workbook_name: The name of the worksheet to read.
