@@ -7,15 +7,16 @@ import yaml
 class DataReader:
 
     def __init__(self):
-        pass
+        self.config_path = './../config.yaml'
+        self.read_path = './../data/input/'
 
-    def read_yaml(self):
+    def read_yaml_configuration(self):
         """
         Reads a python dictionary based on YAML file.
         :param file_path: The path to the YAML file to read.
         :return: Python dictionary based on the yaml config file
         """
-        with open("./../../config.yaml", "r") as stream:
+        with open(self.config_path, "r") as stream:
             try:
                 return yaml.safe_load(stream)
             except yaml.YAMLError as exc:
@@ -25,11 +26,12 @@ class DataReader:
         """
         Reads a workbook from input folder.
         :param workbook_name: The name of the worksheet to read.
-        :return: Pandas excel file object with all worksheets
+        :return: Pandas Excel file object with all worksheets
         """
-        return pd.ExcelFile(f'./../../data/input/{workbook_name}')
+        return pd.ExcelFile(f'{self.read_path}{workbook_name}')
 
-    def read_excel_worksheet(self, workbook, worksheet_name):
+    @staticmethod
+    def read_excel_worksheet(workbook, worksheet_name):
         """
         Reads a worksheet from an Excel workbook.
         :param workbook: Workbook Object read by pandas.
@@ -38,7 +40,8 @@ class DataReader:
         """
         return workbook.parse(worksheet_name)
 
-    def get_all_files_in_directory(self, directory):
+    @staticmethod
+    def get_all_files_in_directory(directory):
         """
         Gets the names of all the files in a directory.
         :param directory: The directory from which to get the file names.
