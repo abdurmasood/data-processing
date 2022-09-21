@@ -1,5 +1,6 @@
 from os import listdir
 from os.path import isfile, join
+from src.globals import READ_DIR
 import pandas as pd
 import yaml
 
@@ -8,7 +9,6 @@ class DataReader:
 
     def __init__(self):
         self.config_path = './../config.yaml'
-        self.read_path = './../data/input/'
 
     def read_yaml_configuration(self):
         """
@@ -28,7 +28,7 @@ class DataReader:
         :param workbook_name: The name of the worksheet to read.
         :return: Pandas Excel file object with all worksheets
         """
-        return pd.ExcelFile(f'{self.read_path}{workbook_name}')
+        return pd.ExcelFile(f'{READ_DIR}{workbook_name}')
 
     @staticmethod
     def read_excel_worksheet(workbook, worksheet_name):

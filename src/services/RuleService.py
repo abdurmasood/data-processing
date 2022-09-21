@@ -1,5 +1,6 @@
 from src.inputoutput.DataReader import DataReader
 from src.services.DataFormattingService import DataFormattingService
+from src.globals import WRITE_DIR
 
 
 class RuleService:
