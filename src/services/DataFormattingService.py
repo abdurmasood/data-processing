@@ -2,6 +2,7 @@ from src.models.DataProcessingConfiguration import DataProcessingConfiguration
 from src.models.NewColumn import NewColumn
 from src.models.InputWorksheet import InputWorksheet
 from src.models.OutputWorkbook import OutputWorkbook
+import string
 
 
 class DataFormattingService:
@@ -43,7 +44,6 @@ class DataFormattingService:
                         OutputWorkbook(
                             output_workbook['workbook_name'],
                             new_columns,
-                            output_workbook['remove_all_formatting'],
                             output_workbook['remove_totals_row']
                         )
                     )
@@ -58,3 +58,23 @@ class DataFormattingService:
         return DataProcessingConfiguration(
             input_worksheets
         )
+
+    @staticmethod
+    def index_to_excel_column(column_index):
+        start_index = 1  # it can start either at 0 or at 1
+        letter = ''
+        while column_index > 25 + start_index:
+            letter += chr(65 + int((column_index - start_index) / 26) - 1)
+            column_index = column_index - (int((column_index - start_index) / 26)) * 26
+        letter += chr(65 - start_index + (int(column_index)))
+
+        return letter
+
+    @staticmethod
+    def excel_column_to_index(excel_column_string):
+        num = 0
+        for c in excel_column_string:
+            if c in string.ascii_letters:
+                num = num * 26 + (ord(c.upper()) - ord('A')) + 1
+
+        return num

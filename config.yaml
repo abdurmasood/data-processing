@@ -6,10 +6,8 @@ sheets:
         new_columns:
           - column_name: Property Premium 100%
             value_definition: X*W
-        remove_all_formatting: True
         remove_totals_row: True
       - workbook_name: Liability
-        remove_all_formatting: True
         remove_totals_row: True
   - sheet_name: cc
     output_workbooks:
@@ -17,13 +15,9 @@ sheets:
         new_columns:
           - column_name: Property Premium 100%
             value_definition: X*W
-        remove_all_formatting: True
         remove_totals_row: True
       - workbook_name: Liability
-        remove_all_formatting: True
         remove_totals_row: True
   - sheet_name: cc
-    remove_all_formatting: True
     remove_totals_row: True
-remove_all_formatting: False
 remove_totals_row: False
