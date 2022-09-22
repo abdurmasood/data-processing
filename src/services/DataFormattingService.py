@@ -60,6 +60,16 @@ class DataFormattingService:
         )
 
     @staticmethod
+    def parse_workbook_name(name):
+        name_split = name.split('_')
+        month_year = name_split[2]
+        file_name = name_split[3]
+
+        month = month_year.split('.')[0]
+        year = month_year.split('.')[1]
+        return month, year
+
+    @staticmethod
     def index_to_excel_column(column_index):
         start_index = 1  # it can start either at 0 or at 1
         letter = ''

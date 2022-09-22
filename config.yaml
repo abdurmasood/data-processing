@@ -18,6 +18,6 @@ sheets:
         remove_totals_row: True
       - workbook_name: Liability
         remove_totals_row: True
-  - sheet_name: cc
+  - sheet_name: cgl
     remove_totals_row: True
 remove_totals_row: False
