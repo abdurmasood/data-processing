@@ -87,4 +87,19 @@ class DataFormattingService:
             if c in string.ascii_letters:
                 num = num * 26 + (ord(c.upper()) - ord('A')) + 1
 
-        return num
+        return num - 1
+
+    @staticmethod
+    def dataframe_column_processing(column1, column2, processing_operator):
+        result = None
+
+        if processing_operator == '/':
+            result = column1/column2
+        elif processing_operator == '*':
+            result = column1*column2
+        elif processing_operator == '+':
+            result = column1+column2
+        elif processing_operator == '-':
+            result = column1-column2
+
+        return result

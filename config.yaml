@@ -13,8 +13,8 @@ sheets:
     output_workbooks:
       - workbook_name: Property
         new_columns:
-          - column_name: Property Premium 100%
-            value_definition: X*W
+          - column_name: Test Premium 100%
+            value_definition: AL*AM
         remove_totals_row: True
       - workbook_name: Liability
         remove_totals_row: True
