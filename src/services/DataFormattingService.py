@@ -11,6 +11,11 @@ class DataFormattingService:
 
     @staticmethod
     def remove_totals_line(dataframe):
+        """
+        Function to remove Totals row from dataframe (if present)
+
+        :param dataframe: Pandas dataframe to manipulate
+        """
         for col in dataframe:
             element = str(dataframe[col][dataframe.index[-1]])
             if element:
@@ -19,6 +24,13 @@ class DataFormattingService:
 
     @staticmethod
     def parse_yaml(yaml):
+        """
+        Parse yaml configuration and store values in python defined models in src.models.
+
+        :param yaml: Yaml to parse.
+        :return:
+            DataProcessingConfiguration: Python model that stores all yaml configuration.
+        """
         input_worksheets = []
 
         # Parsing the yaml file into the relevant models.
@@ -61,6 +73,14 @@ class DataFormattingService:
 
     @staticmethod
     def parse_workbook_name(name):
+        """
+        Parse workbook name to get the month and year of data collection.
+
+        :param name: Name of workbook to parse.
+        :return:
+            month: Month of data collection
+            year: Year of data collection
+        """
         name_split = name.split('_')
         month_year = name_split[2]
         file_name = name_split[3]
@@ -71,7 +91,14 @@ class DataFormattingService:
 
     @staticmethod
     def index_to_excel_column(column_index):
-        start_index = 1  # it can start either at 0 or at 1
+        """
+        Function to convert integer based index to an Excel column index.
+
+        :param column_index: Index to convert to excel column index.
+        :return:
+            letter: Equivalent excel based column index
+        """
+        start_index = 1
         letter = ''
         while column_index > 25 + start_index:
             letter += chr(65 + int((column_index - start_index) / 26) - 1)
@@ -82,6 +109,13 @@ class DataFormattingService:
 
     @staticmethod
     def excel_column_to_index(excel_column_string):
+        """
+        Function to convert excel column to integer based index.
+
+        :param excel_column_string: Excel column index to convert.
+        :return:
+            num: Integer based index
+        """
         num = 0
         for c in excel_column_string:
             if c in string.ascii_letters:
@@ -91,6 +125,15 @@ class DataFormattingService:
 
     @staticmethod
     def dataframe_column_processing(column1, column2, processing_operator):
+        """
+        Function to perform mathematical functions on two dataframe columns.
+
+        :param column1: Column 1 from dataframe.
+        :param column2: Column 2 from dataframe.
+        :param processing_operator: Mathematical operation to perform.
+        :return:
+            result: Dataframe after the mathematical function has been applied
+        """
         result = None
 
         if processing_operator == '/':
