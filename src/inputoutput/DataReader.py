@@ -11,7 +11,7 @@ class DataReader:
     def read_yaml_configuration():
         """Reads a python dictionary based on YAML file.
 
-        Returns:
+        :returns:
             dict: Python dictionary based on the yaml config file.
         """
         with open(CONFIG_FILE_PATH, "r") as stream:
@@ -26,7 +26,7 @@ class DataReader:
         
         :param workbook_name: Name of workbook to read from the read directory.
 
-        Returns:
+        :returns:
             Pandas Excel Object: Pandas Excel file object with all worksheets.
         """
         return pd.ExcelFile(f'{READ_DIR}{workbook_name}')
@@ -38,7 +38,7 @@ class DataReader:
         :param workbook: Pandas Workbook object to read from.
         :param worksheet_name: Name of worksheet to read from workbook.
 
-        Returns:
+        :returns:
             pd.Dataframe: Dataframe object containing worksheet data.
         """
         return workbook.parse(worksheet_name)
@@ -49,7 +49,7 @@ class DataReader:
 
         :param directory: The directory from which to get the file names.
         
-        Returns:
+        :returns:
             list: A list with all the file names.
         """
         return [f for f in listdir(directory) if isfile(join(directory, f))]
