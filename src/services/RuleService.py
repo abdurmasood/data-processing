@@ -26,8 +26,16 @@ class RuleService:
         for input_worksheet in data_processing_cofiguration.input_worksheets:
             sheet_df = datareader.read_excel_worksheet(workbook, input_worksheet.sheet_name)
 
+            if input_worksheet.remove_totals_row:
+                formatter.remove_totals_row(sheet_df)
+
             if input_worksheet.output_workbooks:
+
                 for output_workbook in input_worksheet.output_workbooks:
+
+                    if output_workbook.remove_totals_row:
+                        formatter.remove_totals_row(sheet_df)
+
                     if output_workbook.new_columns:
 
                         for new_column in output_workbook.new_columns:
@@ -45,6 +53,7 @@ class RuleService:
                         data=sheet_df
                     )
             else:
+
                 datawriter.create_excel_workbook(
                     year=year,
                     month=month,

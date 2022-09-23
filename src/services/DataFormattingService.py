@@ -10,7 +10,7 @@ class DataFormattingService:
         pass
 
     @staticmethod
-    def remove_totals_line(dataframe):
+    def remove_totals_row(dataframe):
         """
         Function to remove Totals row from dataframe (if present)
 
@@ -60,16 +60,31 @@ class DataFormattingService:
                         )
                     )
 
-            input_worksheets.append(
-                InputWorksheet(
-                    input_worksheet['sheet_name'],
-                    output_workbooks
+            if 'remove_totals_row' in input_worksheet:
+                input_worksheets.append(
+                    InputWorksheet(
+                        input_worksheet['sheet_name'],
+                        output_workbooks,
+                        input_worksheet['remove_totals_row']
+                    )
                 )
-            )
+            else:
+                input_worksheets.append(
+                    InputWorksheet(
+                        input_worksheet['sheet_name'],
+                        output_workbooks
+                    )
+                )
 
-        return DataProcessingConfiguration(
-            input_worksheets
-        )
+        if 'remove_totals_row' in yaml:
+            return DataProcessingConfiguration(
+                input_worksheets,
+                yaml['remove_totals_row']
+            )
+        else:
+            return DataProcessingConfiguration(
+                input_worksheets
+            )
 
     @staticmethod
     def parse_workbook_name(name):
